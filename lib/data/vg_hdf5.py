@@ -13,7 +13,7 @@ from lib.scene_parser.rcnn.structures.bounding_box import BoxList
 from lib.utils.box import bbox_overlaps
 
 class vg_hdf5(Dataset):
-    def __init__(self, cfg, split="train", transforms=None, num_im=-1, num_val_im=5000,
+    def __init__(self, cfg, split="train", transforms=None, num_im=-1, num_val_im=500,
             filter_duplicate_rels=True, filter_non_overlap=True, filter_empty_rels=True):
         assert split == "train" or split == "test", "split must be one of [train, val, test]"
         assert num_im >= -1, "the number of samples must be >= 0"
@@ -204,7 +204,8 @@ def load_graphs(graphs_file, images_file, mode='train', num_im=-1, num_val_im=0,
     im_h5 = h5py.File(images_file, 'r')
 
     data_split = roi_h5['split'][:]
-    split = 2 if mode == 'test' else 0
+    # split = 2 if mode == 'test' else 0
+    split = data_split[0]
     split_mask = data_split == split
 
     # Filter out images without bounding boxes

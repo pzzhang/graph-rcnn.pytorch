@@ -29,11 +29,14 @@
 .vscode
 
 # project dirs
-run
-src/data
 datasets
 yamls
 aml_config
+logs
+checkpoints
+lib/scene_parser/rcnn/build
+lib/scene_parser/rcnn/rcnn.egg-info
+
 
 # compilation and distribution
 __pycache__
