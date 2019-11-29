@@ -91,7 +91,12 @@ def main():
     parser.add_argument("--use_freq_prior", action='store_true')
     parser.add_argument("--visualize", action='store_true')
     parser.add_argument("--algorithm", type=str, default='sg_baseline')
+    parser.add_argument('--gpu_ids', dest='gpu_ids', type=str, default='-1')
     args = parser.parse_args()
+
+    if args.gpu_ids != '-1':
+        os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu_ids
+        args.gpu_ids = [int(gpu_id) for gpu_id in args.gpu_ids.split(',')]
 
     num_gpus = int(os.environ["WORLD_SIZE"]) if "WORLD_SIZE" in os.environ else 1
     args.distributed = num_gpus > 1

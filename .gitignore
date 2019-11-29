@@ -30,6 +30,7 @@
 
 # project dirs
 datasets
+results
 yamls
 aml_config
 logs
