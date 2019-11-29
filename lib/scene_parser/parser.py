@@ -14,6 +14,8 @@ from .rcnn.structures.image_list import to_image_list
 from .rcnn.utils.comm import synchronize, get_rank
 from .rcnn.modeling.relation_heads.relation_heads import build_roi_relation_head
 
+import pdb
+
 SCENE_PAESER_DICT = ["sg_baseline", "sg_imp", "sg_msdn", "sg_grcnn", "sg_reldn"]
 
 class SceneParser(GeneralizedRCNN):
@@ -130,7 +132,9 @@ class SceneParser(GeneralizedRCNN):
                     relation_features = x
                 # During training, self.box() will return the unaltered proposals as "detections"
                 # this makes the API consistent during training and testing
+                pdb.set_trace()
                 x_pairs, detection_pairs, rel_heads_loss = self.rel_heads(relation_features, detections, targets)
+                pdb.set_trace()
                 scene_parser_losses.update(rel_heads_loss)
 
                 x = (x, x_pairs)
