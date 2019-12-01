@@ -18,8 +18,6 @@ from .msdn.msdn import build_msdn_model
 from .grcnn.grcnn import build_grcnn_model
 from .reldn.reldn import build_reldn_model
 
-import pdb
-
 class ROIRelationHead(torch.nn.Module):
     """
     Generic Relation Head class.
@@ -146,8 +144,6 @@ class ROIRelationHead(torch.nn.Module):
                         obj_class_labels[rel_inds[:, 0]],
                         obj_class_labels[rel_inds[:, 1]],
                     ), 1))
-
-        pdb.set_trace()
 
         if not self.training:
             # NOTE: if we have updated object class logits, then we need to update proposals as well!!!
